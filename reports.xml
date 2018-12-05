@@ -1,0 +1,55 @@
+<odoo>
+    <report id="report_course" model="test.course" string="Course Report" name="test.report_course_view" file="test.report_course" report_type="qweb-pdf" />
+    <template id="report_course_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h3>Course: <strong> <span t-field="doc.name" /></strong></h3>  
+                            <t t-foreach="doc.session_ids" t-as="session">
+                                <div class="page">
+                                    <div class="container">
+                                        <h2 t-field="session.name" /> 
+                                        <div class="col-xs-12">
+                                            <div class="col-xs-3">
+                                                <div class="form-group">
+                                                    <p>Instructor: <strong><span t-field="session.instructor_id.name" /></strong></p>
+                                                </div>
+                                            </div>  
+                                            <div class="col-xs-3">
+                                                <div class="form-group">
+                                                    <p>Form <span t-field="session.start_date" /> to <span t-field="session.end_date" />
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="form-group">
+                                                    <p>Number of seats <span t-field="session.seats" /></p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-xs-3">
+                                                <div class="form-group">
+                                                    <p>Duration(Days) <span t-field="session.duration" /></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h3>Attendees:</h3>
+                                        <div class="col-xs-12">
+                                            <t t-foreach="session.attendee_ids" t-as="attendee">
+                                                <div class="col-xs-3">
+                                                    <div class="form-group">
+                                                        <span t-field="attendee.name" />
+                                                    </div>
+                                                </div>
+                                            </t> 
+                                        </div>    
+                                    </div> 
+                                </div>
+                            </t>
+                    </div> 
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

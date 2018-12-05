@@ -1,0 +1,32 @@
+
+<odoo>
+
+    <!-- model.name form view -->
+    <record id="model_name_view_form" model="ir.ui.view">
+        <field name="name">sale.order.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="course_id" placeholder="select a course"/>
+                <field name="valid_course" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+
+
+    <!-- <record id="email_template_sale_order" model="email.template">
+        <field name="name">Sales Order - Send by Email (2)</field>
+        <field name="email_from">${object.user_id.email|safe}</field>
+        <field name="subject">${object.company_id.name|safe} Invoice (Ref ${object.number or 'n/a'})</field>
+        <field name="partner_to">${object.partner_id.id}</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">${object.partner_id.lang}</field>
+        <field name="body_html">
+            <![CDATA[ <p>Write down your own template code here</p> ]]>
+        </field>
+    </record> -->
+
+</odoo>
